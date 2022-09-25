@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 
 
 //services added 
-builder.Services.AddDbContext<MovieDbContext>(options => options.UseSqlServer("name=DefaultConnectionString"));
+builder.Services.AddDbContext<MovieDbContext>(options => options.UseSqlServer("name=DefaultConnectionString", sqlserver =>sqlserver.UseNetTopologySuite()));
 
 
 var app = builder.Build();
