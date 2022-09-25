@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using movieDemoApp.Entities;
 
 namespace movieDemoApp
 {
@@ -9,7 +10,15 @@ namespace movieDemoApp
         {
 
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Genre>().HasKey(k => k.GenreIdentification);
+        }
+
+
+        public DbSet<Genre> genres { get; set; }
 
 
     }
