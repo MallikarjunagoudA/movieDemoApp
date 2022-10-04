@@ -48,6 +48,9 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
         modelBuilder.Entity<CinemaHall>().Property(p => p.cost).HasPrecision(precision: 9, scale: 2);
 
 
+            // MovieActor
+            modelBuilder.Entity<MovieActor>().Property(p => p.character).HasMaxLength(150);
+            modelBuilder.Entity<MovieActor>().HasKey(p => new {p.movieid, p.actorid});
         }
 
 
@@ -57,6 +60,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
         public DbSet<Movie> movies { get; set; }
         public DbSet<CinemaOffer> cinemaOffers { get; set; }
         public DbSet<CinemaHall> cinemaHalls { get; set; }
+        public DbSet<MovieActor> movieActors { get; set; }
 
 
 

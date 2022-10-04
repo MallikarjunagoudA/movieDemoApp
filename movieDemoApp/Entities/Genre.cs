@@ -13,5 +13,7 @@ namespace movieDemoApp.Entities
         //[Required]
         //[Column("GenreName")]
         public string Name { get; set; }
+
+        public HashSet<Movie> cinemas { get; set; }
     }
 }
