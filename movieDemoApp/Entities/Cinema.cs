@@ -12,6 +12,6 @@ namespace movieDemoApp.Entities
         
         public Point location { get; set; }
 
-        public CinemaOffer CinemaOffer { get; set; }
+        public CinemaOffer cinemaOffer { get; set; }
     }
 }

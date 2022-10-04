@@ -8,5 +8,6 @@
         public Decimal DiscountPercentage { get; set; }
         public int CinemaId { get; set; }
 
+
     }
 }
