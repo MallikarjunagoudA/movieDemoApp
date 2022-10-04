@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using movieDemoApp;
@@ -12,9 +13,10 @@ using movieDemoApp;
 namespace movieDemoApp.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    partial class MovieDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221004120253_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,36 +65,13 @@ namespace movieDemoApp.Migrations
                     b.Property<Point>("location")
                         .HasColumnType("geography");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("cinemas");
-                });
-
-            modelBuilder.Entity("movieDemoApp.Entities.CinemaHall", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CinemaHallTypes")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(1);
-
-                    b.Property<int>("cinemaid")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("cost")
+                    b.Property<decimal>("price")
                         .HasPrecision(9, 2)
                         .HasColumnType("decimal(9,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("cinemaid");
-
-                    b.ToTable("cinemaHalls");
+                    b.ToTable("cinemas");
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.CinemaOffer", b =>
@@ -104,24 +83,23 @@ namespace movieDemoApp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("Begin")
-                        .HasColumnType("Date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("CinemaId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("DiscountPercentage")
-                        .HasPrecision(9, 2)
-                        .HasColumnType("decimal(9,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("End")
-                        .HasColumnType("Date");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CinemaId")
                         .IsUnique();
 
-                    b.ToTable("cinemaOffers");
+                    b.ToTable("CinemaOffer");
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.Genre", b =>
@@ -171,21 +149,10 @@ namespace movieDemoApp.Migrations
                     b.ToTable("movies");
                 });
 
-            modelBuilder.Entity("movieDemoApp.Entities.CinemaHall", b =>
-                {
-                    b.HasOne("movieDemoApp.Entities.Cinema", "cinema")
-                        .WithMany("cinemaHalls")
-                        .HasForeignKey("cinemaid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("cinema");
-                });
-
             modelBuilder.Entity("movieDemoApp.Entities.CinemaOffer", b =>
                 {
                     b.HasOne("movieDemoApp.Entities.Cinema", null)
-                        .WithOne("cinemaOffer")
+                        .WithOne("CinemaOffer")
                         .HasForeignKey("movieDemoApp.Entities.CinemaOffer", "CinemaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -193,9 +160,7 @@ namespace movieDemoApp.Migrations
 
             modelBuilder.Entity("movieDemoApp.Entities.Cinema", b =>
                 {
-                    b.Navigation("cinemaHalls");
-
-                    b.Navigation("cinemaOffer");
+                    b.Navigation("CinemaOffer");
                 });
 #pragma warning restore 612, 618
         }
