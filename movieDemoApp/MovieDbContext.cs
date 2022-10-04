@@ -10,6 +10,12 @@ public MovieDbContext(DbContextOptions options): base(options)
 {
 
 }
+
+protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+{
+            configurationBuilder.Properties<DateTime>().HaveColumnType("date");
+            configurationBuilder.Properties<string>().HaveMaxLength(150);
+}
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
         base.OnModelCreating(modelBuilder);
@@ -20,16 +26,16 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
         modelBuilder.Entity<Genre>()
             .Property(p => p.Name)
             //.HasColumnName("GenreName")
-            .HasMaxLength(150).IsRequired();
+            .IsRequired();
 
 
         // Actor
-        modelBuilder.Entity<Actor>().Property(p => p.Name).HasMaxLength(150).IsRequired();
-
+        modelBuilder.Entity<Actor>().Property(p => p.Name).IsRequired();
         modelBuilder.Entity<Actor>().Property(p => p.DOB).HasColumnType("Date");
+        modelBuilder.Entity<Actor>().Property(p => p.Biograpy).HasColumnType("nvarchar(max)");
 
         // Cinema
-        modelBuilder.Entity<Cinema>().Property(p => p.Name).HasMaxLength(150).IsRequired();
+        modelBuilder.Entity<Cinema>().Property(p => p.Name).IsRequired();
 
 
         // Movie
@@ -49,7 +55,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 
             // MovieActor
-            modelBuilder.Entity<MovieActor>().Property(p => p.character).HasMaxLength(150);
+            modelBuilder.Entity<MovieActor>().Property(p => p.character);
             modelBuilder.Entity<MovieActor>().HasKey(p => new {p.movieid, p.actorid});
         }
 
