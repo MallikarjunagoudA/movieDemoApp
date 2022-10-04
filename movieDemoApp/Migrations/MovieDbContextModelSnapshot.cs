@@ -35,7 +35,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasIndex("cinemasId");
 
-                    b.ToTable("CinemaHallMovie");
+                    b.ToTable("CinemaHallMovie", (string)null);
                 });
 
             modelBuilder.Entity("GenreMovie", b =>
@@ -50,7 +50,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasIndex("genresId");
 
-                    b.ToTable("GenreMovie");
+                    b.ToTable("GenreMovie", (string)null);
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.Actor", b =>
@@ -74,7 +74,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("actors");
+                    b.ToTable("actors", (string)null);
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.Cinema", b =>
@@ -95,7 +95,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("cinemas");
+                    b.ToTable("cinemas", (string)null);
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.CinemaHall", b =>
@@ -120,7 +120,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasIndex("cinemaid");
 
-                    b.ToTable("cinemaHalls");
+                    b.ToTable("cinemaHalls", (string)null);
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.CinemaOffer", b =>
@@ -149,7 +149,7 @@ namespace movieDemoApp.Migrations
                     b.HasIndex("CinemaId")
                         .IsUnique();
 
-                    b.ToTable("cinemaOffers");
+                    b.ToTable("cinemaOffers", (string)null);
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.Genre", b =>
@@ -167,7 +167,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("genres");
+                    b.ToTable("genres", (string)null);
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.Movie", b =>
@@ -196,7 +196,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("movies");
+                    b.ToTable("movies", (string)null);
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.MovieActor", b =>
@@ -218,7 +218,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasIndex("actorid");
 
-                    b.ToTable("movieActors");
+                    b.ToTable("movieActors", (string)null);
                 });
 
             modelBuilder.Entity("CinemaHallMovie", b =>
