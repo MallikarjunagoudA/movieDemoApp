@@ -11,5 +11,7 @@ namespace movieDemoApp.Entities
         public decimal price { get; set; }
         
         public Point location { get; set; }
+
+        public CinemaOffer CinemaOffer { get; set; }
     }
 }
