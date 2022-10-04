@@ -11,5 +11,6 @@ namespace movieDemoApp.Entities
         public string? Biograpy { get; set; }
         //[Column(TypeName ="Date")]
         public Nullable<DateTime> DOB { get; set; }
+        public HashSet<MovieActor> movieActors { get; set; }
     }
 }

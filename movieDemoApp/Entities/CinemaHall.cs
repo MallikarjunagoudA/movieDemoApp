@@ -13,5 +13,6 @@ namespace movieDemoApp.Entities
         public decimal cost { get; set; }
         public int cinemaid { get; set; }
         public Cinema cinema { get; set; }
+        public HashSet<Movie> cinemas { get; set; }
     }
 }

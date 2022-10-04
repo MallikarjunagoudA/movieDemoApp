@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using movieDemoApp;
@@ -12,9 +13,10 @@ using movieDemoApp;
 namespace movieDemoApp.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    partial class MovieDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221004193457_manytomanycustom")]
+    partial class manytomanycustom
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +37,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasIndex("cinemasId");
 
-                    b.ToTable("CinemaHallMovie", (string)null);
+                    b.ToTable("CinemaHallMovie");
                 });
 
             modelBuilder.Entity("GenreMovie", b =>
@@ -50,7 +52,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasIndex("genresId");
 
-                    b.ToTable("GenreMovie", (string)null);
+                    b.ToTable("GenreMovie");
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.Actor", b =>
@@ -74,7 +76,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("actors", (string)null);
+                    b.ToTable("actors");
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.Cinema", b =>
@@ -95,7 +97,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("cinemas", (string)null);
+                    b.ToTable("cinemas");
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.CinemaHall", b =>
@@ -120,7 +122,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasIndex("cinemaid");
 
-                    b.ToTable("cinemaHalls", (string)null);
+                    b.ToTable("cinemaHalls");
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.CinemaOffer", b =>
@@ -149,7 +151,7 @@ namespace movieDemoApp.Migrations
                     b.HasIndex("CinemaId")
                         .IsUnique();
 
-                    b.ToTable("cinemaOffers", (string)null);
+                    b.ToTable("cinemaOffers");
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.Genre", b =>
@@ -167,7 +169,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("genres", (string)null);
+                    b.ToTable("genres");
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.Movie", b =>
@@ -196,7 +198,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("movies", (string)null);
+                    b.ToTable("movies");
                 });
 
             modelBuilder.Entity("movieDemoApp.Entities.MovieActor", b =>
@@ -218,7 +220,7 @@ namespace movieDemoApp.Migrations
 
                     b.HasIndex("actorid");
 
-                    b.ToTable("movieActors", (string)null);
+                    b.ToTable("movieActors");
                 });
 
             modelBuilder.Entity("CinemaHallMovie", b =>
