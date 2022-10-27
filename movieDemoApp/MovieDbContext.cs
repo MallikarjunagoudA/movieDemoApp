@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EFCoreMovies.Entities.Seeding;
+using Microsoft.EntityFrameworkCore;
 using movieDemoApp.Entities;
 using System.Reflection;
 
@@ -21,6 +22,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
         base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            Module3Seeding.Seed(modelBuilder);
 
 
         }
